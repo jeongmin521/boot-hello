@@ -32,6 +32,8 @@ public class CalcController {
 	public Map<String, Object> jsonCalc(@RequestBody Map<String, Integer> map) {
 		Map<String, Object> result = new HashMap<>();
 		result.put("status", 0);
+		result.put("a", map.get("a"));
+		result.put("b", map.get("b"));
 		result.put("result", map.get("a") + map.get("b"));
 		return result;
 	}

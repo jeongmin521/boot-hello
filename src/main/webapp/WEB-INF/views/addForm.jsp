@@ -12,26 +12,47 @@
 		A : <input id="a" name="a" type="number" placeholder="정수 입력" required><br/>
 		B : <input id="b" name="b" type="number" placeholder="정수 입력" required><br/>
 		result : <span id="result"></span><br/>
+		
+		A : <span id = "result_a"></span><br/>
+		B : <span id = "result_b"></span><br/>
+		
+		A : <span id = "result_a2"></span><br/>
+		B : <span id = "result_b2"></span><br/>
+		
 		<input type="submit" value="계산">
 		<input type="button" id="jsonCalc" value="JSON 계산">
 	</form>
 <script type="text/javascript">
-//const jsonCalc = document.querySelector("#jsonCalc");
+const jsonCalc = document.querySelector("#jsonCalc");
 jsonCalc.addEventListener("click", e => {
 	e.preventDefault();
-	const a = document.getElementById("a");
-	const b = document.getElementById("b");
-	const result = document.getElementById("result");
+	//const a = document.getElementById("a");
+	//const b = document.getElementById("b");
+	//const result = document.getElementById("result");
 	
 	
 	myFetch("jsonCalc", {a:a.value, b:b.value}, json => {
 		if(json.status == 0) {
 			result.innerText = json.result;
+			result_a.innerText = json.a;
+			result_b.innerText = json.b;
 		} else {
 			alert(json.statusMessage);
 		}
 	});
 });
+
+const a = document.querySelector("#a");
+a.addEventListener("keyup", e => {
+	const result_a2 = document.getElementById("result_a2");
+	result_a2.innerText = a.value;
+})
+
+const b = document.querySelector("#b");
+b.addEventListener("keyup", e => {
+	const result_b2 = document.getElementById("result_b2");
+	result_b2.innerText = b.value;
+})
 </script>
 </body>
 </html>
